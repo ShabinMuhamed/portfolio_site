@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home.views import home_view, about_view, skills_view,projects_view
+from home.views import home_view, about_view, skills_view,projects_view,contact_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,8 @@ urlpatterns = [
     path('about/', about_view),
     path('skills/', skills_view),
     path('projects/', projects_view),
+    path('contact/', contact_view),  # 👈 new route
+
 ]
 
 
