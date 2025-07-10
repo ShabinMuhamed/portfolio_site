@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import Project
 
 def home_view(request):
@@ -30,3 +30,7 @@ def contact_view(request):
         success = True
 
     return render(request, 'home/contact.html', {'success': success})
+
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'home/project_detail.html', {'project': project})

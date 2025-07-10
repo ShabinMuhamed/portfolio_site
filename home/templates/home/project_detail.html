@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% block content %}
+  <div style="padding: 30px;">
+    <h1>{{ project.title }}</h1>
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width: 500px; height: auto; margin: 20px 0;">
+    {% endif %}
+    <p><strong>Description:</strong></p>
+    <p>{{ project.description }}</p>
+    <p><strong>Tech Used:</strong> {{ project.technology }}</p>
+    {% if project.link %}
+      <p><a href="{{ project.link }}" target="_blank">View Live</a></p>
+    {% endif %}
+    <a href="{% url 'projects' %}">← Back to Projects</a>
+  </div>
+{% endblock %}
