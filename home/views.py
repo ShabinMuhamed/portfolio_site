@@ -1,5 +1,27 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Project
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import ContactForm
+
+def contact_view(request):
+    form = ContactForm()
+    message_sent = False
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            subject = f'New Contact Form Submission from {name}'
+            full_message = f'From: {name} <{email}>\n\nMessage:\n{message}'
+
+            send_mail(subject, full_message, settings.DEFAULT_FROM_EMAIL, [settings.CONTACT_RECEIVER_EMAIL])
+            message_sent = True
+
+    return render(request, 'home/contact.html', {'form': form, 'message_sent': message_sent})
 
 def home_view(request):
     return render(request, 'home/home.html')
@@ -14,22 +36,6 @@ def projects_view(request):
     projects = Project.objects.all()
     return render(request, 'home/projects.html', {'projects': projects})
 
-def contact_view(request):
-    success = False
-
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-
-        # For now, just print to console (later you can save/send this)
-        print("New message:")
-        print(f"From: {name} <{email}>")
-        print("Message:", message)
-
-        success = True
-
-    return render(request, 'home/contact.html', {'success': success})
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)

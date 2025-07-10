@@ -1,22 +1,14 @@
 {% extends 'home/base.html' %}
 {% block content %}
-<h1>Contact Me</h1>
-
-{% if success %}
-  <p style="color: green;">Your message has been sent!</p>
-{% endif %}
-
-<form method="POST">
-  {% csrf_token %}
-  <label for="name">Name:</label><br>
-  <input type="text" name="name" required><br><br>
-
-  <label for="email">Email:</label><br>
-  <input type="email" name="email" required><br><br>
-
-  <label for="message">Message:</label><br>
-  <textarea name="message" rows="5" required></textarea><br><br>
-
-  <button type="submit">Send</button>
-</form>
+<div style="padding: 20px; max-width: 600px; margin: auto;">
+    <h2>Contact Me</h2>
+    {% if message_sent %}
+        <p style="color: green;">Your message has been sent! ✅</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send Message</button>
+    </form>
+</div>
 {% endblock %}
