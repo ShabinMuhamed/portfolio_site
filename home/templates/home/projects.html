@@ -1,22 +1,28 @@
 {% extends 'home/base.html' %}
 
+{% block title %}Projects - My Portfolio{% endblock %}
+
 {% block content %}
-<h1>My Projects</h1>
-
-{% for project in projects %}
-  <div style="margin-bottom: 30px;">
-    <a href="{% url 'project_detail' project.pk %}">
-      {% if project.image %}
-        <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width: 300px; height: auto;">
-      {% endif %}
-      <h3>{{ project.title }}</h3>
-    </a>
-    <p><strong>Tech:</strong> {{ project.technology }}</p>
-    <a href="{{ project.link }}" target="_blank">External Link</a>
+  <h2 class="text-center mb-4">My Projects</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for project in projects %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description|truncatewords:25 }}</p>
+            <p class="text-muted"><strong>Tech:</strong> {{ project.technology }}</p>
+            {% if project.link %}
+              <a href="{{ project.link }}" class="btn btn-primary btn-sm" target="_blank">View Project</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No projects added yet.</p>
+    {% endfor %}
   </div>
-  <hr>
-{% endfor %}
-
-
-
 {% endblock %}

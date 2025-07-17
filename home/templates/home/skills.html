@@ -1,10 +1,35 @@
 {% extends 'home/base.html' %}
 
+{% block title %}Skills - My Portfolio{% endblock %}
+
 {% block content %}
-<h1>Skills</h1>
-<ul>
-    <li>Backend: Django, Laravel, Python, PHP</li>
-    <li>Frontend: HTML, CSS, JavaScript</li>
-    <li>Database: MySQL, SQLite</li>
-</ul>
+  <div>
+    <h2 class="text-center mb-4">My Skills</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Frontend</h5>
+            <p class="card-text">HTML, CSS, JavaScript, Bootstrap</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Backend</h5>
+            <p class="card-text">Laravel (PHP), Django (Python)</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Languages</h5>
+            <p class="card-text">Python, Java, C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

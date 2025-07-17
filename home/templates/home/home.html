@@ -1,6 +1,11 @@
 {% extends 'home/base.html' %}
 
+{% block title %}Home - My Portfolio{% endblock %}
+
 {% block content %}
-<h1>Welcome to My Portfolio</h1>
-<p>I'm Shabin, a passionate web developer skilled in Django and Laravel.</p>
+  <div class="text-center">
+    <h1 class="display-4">Welcome to My Portfolio</h1>
+    <p class="lead">I’m a Django and Laravel Developer passionate about building web applications.</p>
+    <a href="/projects/" class="btn btn-primary mt-3">View My Projects</a>
+  </div>
 {% endblock %}
